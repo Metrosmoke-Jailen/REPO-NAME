@@ -115,11 +115,9 @@ describe('Pets', ()  => {
         done();
       });
     });
-  });
-});
 
-// SEARCH
-it('should search ALL pets by name on /search GET', (done) => {
+    // SEARCH
+it('should search pets by name or species on /search GET', (done) => {
   chai.request(server)
       .get('/search?term=norman')
       .end((err, res) => {
@@ -127,4 +125,7 @@ it('should search ALL pets by name on /search GET', (done) => {
         res.should.be.html;
         done();
       });
+    });
+  });
 });
+

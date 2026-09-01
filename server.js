@@ -1,6 +1,6 @@
 if (!process.env.PORT) {
   require('dotenv').config()
-  process.env.NODE_ENV = "dev"
+  process.env.NODE_ENV = "development"
 }
 
 const express = require('express');
@@ -14,7 +14,7 @@ const methodOverride = require('method-override')
 const app = express();
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/petes-pets', {
+mongoose.connect('mongodb://localhost/local', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,

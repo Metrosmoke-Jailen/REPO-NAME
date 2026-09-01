@@ -17,10 +17,11 @@ module.exports = (app) => {
 
     pet.save()
       .then((pet) => {
-        res.redirect(`/pets/${pet._id}`);
+        res.send({ pet: pet });
       })
       .catch((err) => {
-        // Handle Errors
+        // STATUS OF 400 FOR VALIDATIONS
+        res.status(400).send(err.errors);
       }) ;
   });
 
@@ -57,6 +58,7 @@ module.exports = (app) => {
   });
 
   // SEARCH PET
+  // SEARCH PET
   app.get('/search', (req, res) => {
 
     const term = new RegExp(req.query.term, 'i')
@@ -70,7 +72,7 @@ module.exports = (app) => {
         ]
       },
       { page: page }).then((results) => {
-        res.render('pets-index', { pets: results.docs, pagesCount: results.pages, currentPage: page, term: req.query.term });
+        res.render('pets-index', { pets: results.docs, pagesCount: results.pages, currentPage: page });
       });
   });
 }
